@@ -1,0 +1,119 @@
+<form id="form-create-shipping" class="form-horizontal">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="row">
+                    <legend>{{ text_customer_details }}</legend>
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label" for="input-delivery_name">{{ entry_delivery_name }}</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="delivery_name" value="{{ customer_name }}" placeholder="{{ entry_delivery_name }}" id="input-delivery_name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label" for="input-delivery_email">{{ entry_delivery_email }}</label>
+                        <div class="col-sm-9">
+                            <input type="email" name="delivery_email" value="{{ customer_email }}" placeholder="{{ entry_delivery_email }}" id="input-delivery_email" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label" for="input-delivery_address">{{ entry_delivery_address }}</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="delivery_address" value="{{ customer_address }}" placeholder="{{ entry_delivery_address }}" id="input-delivery_address" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="input-delivery_region">{{ entry_delivery_region }}</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="delivery_region" value="{{ customer_region }}" placeholder="{{ entry_delivery_region }}" id="input-delivery_region" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="input-delivery_postcode">{{ entry_delivery_postcode }}</label>
+                        <div class="col-sm-9">
+                            <input type="text" name="delivery_postcode" value="{{ customer_postcode }}" placeholder="{{ entry_delivery_postcode }}" id="input-delivery_postcode" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label" for="input-delivery_telephone">{{ entry_delivery_telephone }}</label>
+                        <div class="col-sm-9">
+                            <input type="tel" name="delivery_phone" value="{{ customer_telephone }}" placeholder="{{ entry_delivery_telephone }}" id="input-delivery_telephone" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-3 control-label" for="input-delivery_city"><span data-toggle="tooltip" title="{{ help_city }}">{{ entry_delivery_city }}</span></label>
+                        <div class="col-sm-9">
+                            <select name="delivery_city" id="input-delivery_city" class="form-control">
+                                <option value="">{{ text_select }}</option>
+                                {% for city in cities %}
+                                    <option value="{{ city.city_en }}">{{ city.city_en ~ ' (' ~ city.city_ar ~ ')' }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <legend>{{ text_shipping_details }}</legend>
+                <div class="form-group required">
+                    <label class="col-sm-3 control-label" for="input-reference">{{ entry_reference }}</label>
+                    <div class="col-sm-9">
+                        <input type="number" name="reference" value="{{ reference }}" placeholder="{{ entry_reference }}" id="input-reference" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-3 control-label" for="input-declared_value">{{ entry_order_total }}</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="declared_value" value="{{ declared_value }}" placeholder="{{ entry_order_total }}" id="input-declared_value" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="input-is_cod"><span data-toggle="tooltip" title="{{ help_is_cod }}">{{ entry_is_cod }}</span></label>
+                    <div class="col-sm-9">
+                        <select name="is_cod" id="input-is_cod" class="form-control">
+                            {% if is_cod %}
+                                <option value="1" selected="selected">{{ text_yes }}</option>
+                                <option value="0">{{ text_no }}</option>
+                            {% else %}
+                                <option value="1">{{ text_yes }}</option>
+                                <option value="0" selected="selected">{{ text_no }}</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="cod_amount_row">
+                    <label class="col-sm-3 control-label" for="input-cod_amount"><span data-toggle="tooltip" title="{{ help_cod_amount }}">{{ entry_cod_amount }}</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" name="cod_amount" value="{{ declared_value }}" placeholder="{{ entry_cod_amount }}" id="input-cod_amount" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-3 control-label" for="input-items_count"><span data-toggle="tooltip" title="{{ help_items_count }}">{{ entry_items_count }}</span></label>
+                    <div class="col-sm-9">
+                        <input type="number" name="items_count" value="{{ items_count }}" placeholder="{{ entry_items_count }}" id="input-items_count" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label class="col-sm-3 control-label" for="input-pieces"><span data-toggle="tooltip" title="{{ help_pieces }}">{{ entry_pieces }}</span></label>
+                    <div class="col-sm-9">
+                        <input type="number" name="pieces" value="{{ pieces }}" placeholder="{{ entry_pieces }}" id="input-pieces" class="form-control" />
+                    </div>
+                </div>
+                <input type="hidden" name="delivery_country" value="{{ delivery_country }}">
+                <input type="hidden" name="currency" value="{{ currency }}">
+				<input type="hidden" name="order_id" value="{{ order_id }}">
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    $('select[name="is_cod"]').on('change', function () {
+
+        if($(this).val() == 1) {
+            $('#cod_amount_row').addClass('required');
+        } else  {
+            $('#cod_amount_row').removeClass('required');
+        }
+    });
+    $('select[name="is_cod"]').trigger('change');
+</script>
