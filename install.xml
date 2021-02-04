@@ -142,6 +142,7 @@
            
            if($shippin_aymakan_button_show != false) {
              $data['shippin_aymakan_button_show'] = $shippin_aymakan_button_show['link'];
+  $data['shippin_aymakan_button'] = false;
            }
       ]]></add>
     </operation>
