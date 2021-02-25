@@ -51,7 +51,7 @@ class ControllerExtensionShippingAymakan extends Controller
         }
 
         if (isset($this->error['address'])) {
-            $data['error_address'] = $this->error['postcode'];
+            $data['error_address'] = $this->error['address'];
         } else {
             $data['error_address'] = '';
         }
@@ -83,6 +83,12 @@ class ControllerExtensionShippingAymakan extends Controller
 
         $data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=shipping', true);
 
+        if (isset($this->request->post['shipping_aymakan_status'])) {
+            $data['shipping_aymakan_status'] = $this->request->post['shipping_aymakan_status'];
+        } else {
+            $data['shipping_aymakan_status'] = $this->config->get('shipping_aymakan_status');
+        }
+
         if (isset($this->request->post['shipping_aymakan_key'])) {
             $data['shipping_aymakan_key'] = $this->request->post['shipping_aymakan_key'];
         } else {
@@ -113,10 +119,10 @@ class ControllerExtensionShippingAymakan extends Controller
             $data['shipping_aymakan_collection_address'] = $this->config->get('shipping_aymakan_collection_address');
         }
 
-        if (isset($this->request->post['shipping_aymakan_collection_region'])) {
-            $data['shipping_aymakan_collection_region'] = $this->request->post['shipping_aymakan_collection_region'];
+        if (isset($this->request->post['shipping_aymakan_collection_neighbourhood'])) {
+            $data['shipping_aymakan_collection_neighbourhood'] = $this->request->post['shipping_aymakan_collection_neighbourhood'];
         } else {
-            $data['shipping_aymakan_collection_region'] = $this->config->get('shipping_aymakan_collection_region');
+            $data['shipping_aymakan_collection_neighbourhood'] = $this->config->get('shipping_aymakan_collection_neighbourhood');
         }
 
         if (isset($this->request->post['shipping_aymakan_collection_postcode'])) {
@@ -240,7 +246,7 @@ class ControllerExtensionShippingAymakan extends Controller
             $data['customer_postcode'] = $order_info['shipping_postcode'];
             $data['cities'] = $this->cities();
             $data['reference'] = $order_id;
-			$data['order_id'] = $order_id;
+            $data['order_id'] = $order_id;
             $data['currency'] = $order_info['currency_code'];
             $data['declared_value'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
             $data['delivery_country'] = 'SA';
@@ -350,7 +356,7 @@ class ControllerExtensionShippingAymakan extends Controller
                     'delivery_email' => $order_info['delivery_email'],
                     'delivery_city' => $order_info['delivery_city'],
                     'delivery_address' => $order_info['delivery_address'],
-                    'delivery_region' => $order_info['delivery_region'],
+                    'delivery_neighbourhood' => $order_info['delivery_neighbourhood'],
                     'delivery_postcode' => $order_info['delivery_postcode'],
                     'delivery_country' => $order_info['delivery_country'],
                     'delivery_phone' => $order_info['delivery_phone'],
@@ -358,7 +364,7 @@ class ControllerExtensionShippingAymakan extends Controller
                     'collection_email' => $this->config->get('shipping_aymakan_collection_email'),
                     'collection_city' => $collection_city,
                     'collection_address' => $this->config->get('shipping_aymakan_collection_address'),
-                    'collection_region' => $this->config->get('shipping_aymakan_collection_region'),
+                    'collection_neighbourhood' => $this->config->get('shipping_aymakan_collection_neighbourhood'),
                     'collection_postcode' => $this->config->get('shipping_aymakan_collection_postcode'),
                     'collection_phone' => $this->config->get('shipping_aymakan_collection_telephone'),
                     'collection_country' => 'SA',
