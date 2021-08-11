@@ -394,6 +394,10 @@ class ControllerExtensionShippingAymakan extends Controller
                         }
                     }
                 }
+                
+                if(isset($response['error']) && isset($response['response']) && is_string($response['response'])) {
+                    $json['warning'] .= $response['response'];
+                }
 
                 if(isset($response['success'])) {
                     $json['success'] =  $this->language->get('text_success_create');
