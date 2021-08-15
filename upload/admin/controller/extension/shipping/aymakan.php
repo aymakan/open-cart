@@ -398,6 +398,10 @@ class ControllerExtensionShippingAymakan extends Controller
                 if(isset($response['error']) && isset($response['response']) && is_string($response['response'])) {
                     $json['warning'] .= $response['response'];
                 }
+                
+                if(isset($response[0]) && $response[0] === 'You have no pricing set. Please contact sales team.') {
+                    $json['warning'] .= $response[0];
+                }
 
                 if(isset($response['success'])) {
                     $json['success'] =  $this->language->get('text_success_create');
