@@ -250,7 +250,7 @@ class ControllerExtensionShippingAymakan extends Controller
             $data['currency'] = $order_info['currency_code'];
             $data['declared_value'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
             $data['delivery_country'] = 'SA';
-            $data['is_cod'] = 0;
+            $data['is_cod'] = ($order_info['payment_code'] === 'cod');
 
             $this->load->model('localisation/country');
 
