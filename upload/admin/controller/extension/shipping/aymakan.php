@@ -245,6 +245,7 @@ class ControllerExtensionShippingAymakan extends Controller
             $data['customer_telephone'] = $order_info['telephone'];
             $data['customer_postcode'] = $order_info['shipping_postcode'];
             $data['cities'] = $this->cities();
+            $data['selected_city'] = isset($order_info['shipping_city']) ? $order_info['shipping_city'] : '';
             $data['reference'] = $order_id;
             $data['order_id'] = $order_id;
             $data['currency'] = $order_info['currency_code'];
