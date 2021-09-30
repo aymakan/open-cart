@@ -46,7 +46,7 @@
                             <select name="delivery_city" id="input-delivery_city" class="form-control">
                                 <option value="">{{ text_select }}</option>
                                 {% for city in cities %}
-                                    <option value="{{ city.city_en }}">{{ city.city_en ~ ' (' ~ city.city_ar ~ ')' }}</option>
+                                    <option {% if (city.city_en in selected_city) or (city.city_ar in selected_city)  %} selected="selected" {% endif %} value="{{ city.city_en }}">{{ city.city_en ~ ' (' ~ city.city_ar ~ ')' }}</option>
                                 {% endfor %}
                             </select>
                         </div>
